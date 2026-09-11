@@ -47,4 +47,19 @@ class User extends Authenticatable implements PasskeyUser
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+        public function imports(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Import::class, 'imported_by');
+    }
+
+    public function templates(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Template::class, 'created_by');
+    }
+
+    public function certificateBatches(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CertificateBatch::class, 'created_by');
+    }
 }
