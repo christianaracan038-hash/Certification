@@ -1,0 +1,15 @@
+<?php
+
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ImportMappingController;
+use Illuminate\Support\Facades\Route;
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('imports/create', [ImportController::class, 'create'])->name('imports.create');
+    Route::post('imports', [ImportController::class, 'store'])->name('imports.store');
+
+    Route::get('imports/{import}/mapping',[ImportMappingController::class, 'edit'])->name('imports.mapping.edit');
+    Route::put('imports/{import}/mapping',[ImportMappingController::class, 'update'])->name('imports.mapping.update');
+
+
+});
